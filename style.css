@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  overflow-x: hidden;
+}
+
+#bg-video {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+
+@keyframes fadeInMain {
+  to {
+    opacity: 1;
+  }
+}
+
+.container {
+  opacity: 0;
+  animation: fadeInMain 1s ease-out 3s forwards, pulseGlow 3s infinite;
+  
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 30px #00aaff;
+  padding: 20px;
+  margin: 40px auto;
+  max-width: 1000px;
+  min-height: 85vh;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+@keyframes fadeOutIntro {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+#intro-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOutIntro 2.5s ease-out 2s forwards;
+}
+
+#intro-animation img {
+  max-width: 80vw;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 20px #0077ff; }
+  50% { box-shadow: 0 0 40px #0055ff; }
+}
+
+
+.section {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid #009dff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px #009dff;
+
+  margin-top: auto;         /* Pushes it toward the bottom */
+  min-height: 40vh;         /* Makes it taller */
+  flex-grow: 1;             /* Allows it to expand if needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+
+
+.tab-btn {
+  background-color: transparent;         /* Default: hollow */
+  border: 2px solid #ffffff;
+  color: #00aaff;
+  text-shadow: 0 0 8px #00aaff;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+
+.tab-btn.active {
+  background-color: #ffffff;
+  color: #00aaff;
+  box-shadow: 0 0 15px #9000ff;
+}
+
+
+.tab-btn:hover {
+  background-color: #ffffff;             /* Hover: filled */
+  color: #00aaff;
+  box-shadow: 0 0 10px #00aaff;
+}
+
+
+.section {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7);
+  border: 2px solid #009dff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px #009dff;
+}
+
+.section.active {
+  display: block;
+}
+
+.section h2 {
+  margin-top: 0;
+  font-size: 20px;
+  border-bottom: 1px solid #009dff;
+  padding-bottom: 5px;
+  text-shadow: 0 0 10px #009dff;
+}
+
+.section input,
+.section button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: transparent;
+  color: #009dff;
+  border: 2px solid #009dff;
+  border-radius: 6px;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 5px #009dff;
+}
+
+.section button:hover {
+  background-color: rgba(0, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 15px;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  margin: 10px 0;
+  background-color: rgba(0, 255, 255, 0.05);
+  border: 1px solid #009dff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #009dff;
+}
+
+.task-text {
+  color: #ffffff;
+  text-shadow: 0 0 5px #00aaff;
+}
+
+li.completed .task-text {
+  color: #6699cc;
+  opacity: 0.6;
+}
+
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  accent-color: #6699cc;
+}
+
+.delete-btn {
+  background-color: rgba(0, 255, 255, 0.1);
+  border: 1px solid #009dff;
+  color: #009dff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  text-shadow: 0 0 5px #009dff;
+}
+
+.delete-btn:hover {
+  background-color: rgba(0, 255, 255, 0.3);
+}
