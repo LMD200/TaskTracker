@@ -35,6 +35,13 @@ body::before {
   }
 }
 
+h1 {
+  color: white;
+  text-shadow: 0 0 10px #00bbff;
+}
+
+
+
 .container {
   opacity: 0;
   animation: fadeInMain 1s ease-out 3s forwards, pulseGlow 3s infinite;
@@ -70,16 +77,15 @@ body::before {
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  animation: fadeOutIntro 2.5s ease-out 2s forwards;
+  animation: fadeOutIntro 1.5s ease-out 2s forwards;
 }
 
 #intro-animation img {
-  max-width: 80vw;
-  max-height: 80vh;
-  width: auto;
-  height: auto;
-  object-fit: contain;
+  width: 100vw;
+  height:100vh;
+  object-fit: cover;
 }
+
 
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 0 20px #0077ff; }
@@ -125,7 +131,7 @@ body::before {
 .tab-btn.active {
   background-color: #ffffff;
   color: #00aaff;
-  box-shadow: 0 0 15px #9000ff;
+  box-shadow: 0 0 15px #009dff;
 }
 
 
@@ -202,13 +208,58 @@ li {
 li.completed .task-text {
   color: #6699cc;
   opacity: 0.6;
+  transition: opacity 0.3s ease, color 0.3s ease;
 }
+
+li.completed {
+  position: relative;
+  animation: levelUpFlashRed 0.6s ease-out;
+}
+
+@keyframes levelUpFlashRed {
+  0%   { box-shadow: 0 0 0px #7700ff; }
+  50%  { box-shadow: 0 0 30px #7700ff; }
+  100% { box-shadow: 0 0 0px #7700ff; }
+}
+
+
 
 
 input[type="checkbox"] {
-  transform: scale(1.2);
-  accent-color: #6699cc;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #009dff;
+  border-radius: 4px;
+  background-color: transparent; /* stays transparent always */
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 0 10px #009dff; /* glow when unchecked */
+  transition: all 0.2s ease;
 }
+
+input[type="checkbox"]:checked {
+  box-shadow: none; /* remove glow when checked */
+}
+
+input[type="checkbox"]::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 4px;
+  height: 10px;
+  border: solid #ffffff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+input[type="checkbox"]:checked::after {
+  opacity: 1;
+}
+
 
 .delete-btn {
   background-color: rgba(0, 255, 255, 0.1);

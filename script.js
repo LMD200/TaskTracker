@@ -41,12 +41,14 @@ function renderSections() {
     const button = document.createElement("button");
     button.textContent = "Add";
     button.onclick = () => {
-      const text = input.value.trim();
-      if (text === "") return;
-      tasks[category].push({ text, completed: false });
-      input.value = "";
-      saveTasks();
-    };
+  const text = input.value.trim();
+  if (text === "") return;
+  console.log(`Adding task to ${category}:`, text); // Debug log
+  tasks[category].push({ text, completed: false });
+  input.value = "";
+  saveTasks();
+};
+
 
     section.appendChild(input);
     section.appendChild(button);
@@ -109,12 +111,10 @@ function deleteTask(category, index) {
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
+  renderSections();
+  showCategory(activeTabIndex);
 }
 
-// Then call these separately where needed:
-saveTasks();
-renderSections();
-showCategory(activeTabIndex);
 
 
 renderTabs();
