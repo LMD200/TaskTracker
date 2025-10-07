@@ -66,6 +66,63 @@ h1 {
   }
 }
 
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.home-content h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  text-shadow: 0 0 10px #00bbff;
+}
+
+.xp-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 80%;
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+.xp-label {
+  font-size: 16px;
+  color: white;
+  text-shadow: 0 0 5px #00bbff;
+  font-weight: bold;
+  min-width: 50px;
+  text-align: right;
+}
+
+.xp-bar-wrapper {
+  flex-grow: 1;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid #00aaff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #00aaff;
+  overflow: hidden;
+}
+
+#xp-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00bbff, #7700ff);
+  transition: width 0.5s ease;
+  box-shadow: 0 0 15px #7700ff;
+}
+
+
+
+
+
 #intro-animation {
   position: fixed;
   top: 0;
