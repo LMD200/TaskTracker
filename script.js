@@ -40,7 +40,7 @@ function renderSections() {
       homeContent.className = "home-content";
 
       const welcome = document.createElement("h2");
-      welcome.textContent = "Welcome, Lehan!";
+      welcome.textContent = "[ [ [ [ Progress Completion ] ] ] ]";
       homeContent.appendChild(welcome);
 
 const xpContainer = document.createElement("div");
