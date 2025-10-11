@@ -6,6 +6,8 @@ const categories = [
   "Database", "Cybersecurity", "Seminar", "Other"
 ];
 
+
+
 function renderTabs() {
   const tabContainer = document.getElementById("tabs");
   tabContainer.innerHTML = "";
@@ -67,58 +69,98 @@ homeContent.appendChild(xpContainer);
       return; // Skip the rest for Home tab
     }
 
-    // Input + Add button for other categories
-    const input = document.createElement("input");
-    input.type = "text";
-    input.placeholder = `Add a ${category} task...`;
+if (category === "Calendar") {
+  const calendarGrid = document.createElement("div");
+  calendarGrid.className = "calendar-grid";
 
-    const button = document.createElement("button");
-    button.textContent = "Add";
-    button.onclick = () => {
-      const text = input.value.trim();
-      if (text === "") return;
-      console.log(`Adding task to ${category}:`, text);
-      tasks[category].push({ text, completed: false });
-      input.value = "";
-      saveTasks();
-    };
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    section.appendChild(input);
-    section.appendChild(button);
+  for (let week = 0; week < 3; week++) {
+    for (let day = 0; day < 7; day++) {
+      const cell = document.createElement("div");
+      cell.className = "calendar-cell";
 
-    const list = document.createElement("ul");
-    tasks[category].forEach((task, index) => {
-      const li = document.createElement("li");
-      if (task.completed) li.classList.add("completed");
+      // Only show labels in the first row
+      if (week === 0) {
+        const label = document.createElement("div");
+        label.className = "calendar-label";
+        label.textContent = days[day];
+        cell.appendChild(label);
+      }
 
-      const textSpan = document.createElement("span");
-      textSpan.className = "task-text";
-      textSpan.textContent = task.text;
+      const textarea = document.createElement("textarea");
+      textarea.className = "calendar-text";
+      textarea.placeholder = "Write here...";
+      textarea.value = tasks["Calendar"]?.[week * 7 + day]?.text || "";
 
-      const controls = document.createElement("div");
-      controls.style.display = "flex";
-      controls.style.gap = "10px";
+      textarea.oninput = () => {
+        tasks["Calendar"][week * 7 + day] = { text: textarea.value };
+        saveTasks();
+      };
 
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.checked = task.completed;
-      checkbox.onclick = () => toggleComplete(category, index);
+      cell.appendChild(textarea);
+      calendarGrid.appendChild(cell);
+    }
+  }
 
-      const deleteBtn = document.createElement("button");
-      deleteBtn.textContent = "✖";
-      deleteBtn.className = "delete-btn";
-      deleteBtn.onclick = () => deleteTask(category, index);
+  section.appendChild(calendarGrid);
+  sectionContainer.appendChild(section);
+  return;
+}
 
-      controls.appendChild(checkbox);
-      controls.appendChild(deleteBtn);
+// Input + Add button for other categories
+const input = document.createElement("input");
+input.type = "text";
+input.placeholder = `Add a ${category} task...`;
 
-      li.appendChild(textSpan);
-      li.appendChild(controls);
-      list.appendChild(li);
-    });
+const button = document.createElement("button");
+button.textContent = "Add";
+button.onclick = () => {
+  const text = input.value.trim();
+  if (text === "") return;
+  console.log(`Adding task to ${category}:`, text);
+  tasks[category].push({ text, completed: false });
+  input.value = "";
+  saveTasks();
+};
 
-    section.appendChild(list);
-    sectionContainer.appendChild(section);
+section.appendChild(input);
+section.appendChild(button);
+
+const list = document.createElement("ul");
+tasks[category].forEach((task, index) => {
+  const li = document.createElement("li");
+  if (task.completed) li.classList.add("completed");
+
+  const textSpan = document.createElement("span");
+  textSpan.className = "task-text";
+  textSpan.textContent = task.text;
+
+  const controls = document.createElement("div");
+  controls.style.display = "flex";
+  controls.style.gap = "10px";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = task.completed;
+  checkbox.onclick = () => toggleComplete(category, index);
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "✖";
+  deleteBtn.className = "delete-btn";
+  deleteBtn.onclick = () => deleteTask(category, index);
+
+  controls.appendChild(checkbox);
+  controls.appendChild(deleteBtn);
+
+  li.appendChild(textSpan);
+  li.appendChild(controls);
+  list.appendChild(li);
+});
+
+section.appendChild(list);
+sectionContainer.appendChild(section);
+
   });
 }
 

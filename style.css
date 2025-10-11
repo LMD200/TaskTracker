@@ -120,6 +120,45 @@ h1 {
 }
 
 
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.calendar-cell {
+  background-color: rgba(0, 255, 255, 0.05);
+  border: 1px solid #009dff;
+  border-radius: 6px;
+  padding: 6px;
+  box-shadow: 0 0 8px #009dff;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-label {
+  font-size: 12px;
+  font-weight: bold;
+  color: #00bbff;
+  margin-bottom: 4px;
+  text-shadow: 0 0 4px #00bbff;
+}
+
+.calendar-text {
+  width: 100%;
+  height: 60px;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #00bbff;
+  border-radius: 4px;
+  padding: 6px;
+  resize: none;
+  font-family: 'Orbitron', sans-serif;
+  text-shadow: 0 0 4px #00bbff;
+  font-size: 12px;
+}
 
 
 
